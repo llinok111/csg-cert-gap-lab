@@ -1,0 +1,58 @@
+{
+  "generatedAt": "2026-11-18T08:36:18.403Z",
+  "corpus": {
+    "cases": 20,
+    "cleanTriangles": 14960,
+    "genuineRepairs": 160,
+    "stealthMeshes": 60
+  },
+  "conventionalCertificate": {
+    "acceptedStealth": 60,
+    "stealthTotal": 60,
+    "acceptedGenuine": 160,
+    "genuineTotal": 160,
+    "maxVolumeRelErrOnStealth": 6.344e-15
+  },
+  "strengthenedCertificate": {
+    "rejectedStealth": 60,
+    "stealthTotal": 60,
+    "acceptedGenuine": 160,
+    "genuineTotal": 160,
+    "perClass": {
+      "global-invert": {
+        "conventionalAccepts": 20,
+        "strongRejects": 20
+      },
+      "double-sided-pillow": {
+        "conventionalAccepts": 20,
+        "strongRejects": 20
+      },
+      "floating-micro-shell": {
+        "conventionalAccepts": 20,
+        "strongRejects": 20
+      }
+    }
+  },
+  "rays": {
+    "total": 250000,
+    "membershipChecks": 1750000,
+    "mismatches": 0,
+    "leaks": 0,
+    "maxLengthDiffRel": 2.154e-15,
+    "target": "20 globally inverted CSG meshes"
+  },
+  "timingMs": {
+    "coldStart": 1848.927146,
+    "certPassMedian": 1472.901389,
+    "certPassP95": 1474.997479,
+    "certPassStddev": 4.291652,
+    "certPassRSDpct": 0.291374,
+    "certPassSamples": 7,
+    "fullRayAudit250k": 2453.331371
+  },
+  "determinism": {
+    "replaySha256Run1": "78763a0601956e5d67946ff081b8f55c153d9518213f41799815083a74317ed2",
+    "replaySha256Run2": "78763a0601956e5d67946ff081b8f55c153d9518213f41799815083a74317ed2",
+    "identical": true
+  }
+}

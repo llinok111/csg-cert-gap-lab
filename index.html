@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CSG Repair Certifier — constructive repair + dual oracle</title>
+<style>
+  html,body{margin:0;height:100%;background:#0d1117;color:#c9d1d9;font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+  #app{display:grid;grid-template-columns:320px 1fr;height:100%}
+  aside{padding:14px;border-right:1px solid #30363d;overflow:auto}
+  h1{font-size:15px;margin:0 0 10px;color:#58a6ff}
+  label{display:block;margin:10px 0 4px;color:#8b949e;font-size:12px}
+  select,button{width:100%;background:#161b22;color:#c9d1d9;border:1px solid #30363d;border-radius:5px;padding:6px;font:inherit}
+  button{cursor:pointer;margin-top:10px;background:#1f6feb;border-color:#1f6feb;color:#fff}
+  button:hover{background:#388bfd}
+  #stats{margin-top:14px;font-size:12px;white-space:pre-wrap;color:#8b949e}
+  #stats b{color:#c9d1d9}
+  .ok{color:#3fb950!important}.bad{color:#f85149!important}
+  #hint{margin-top:12px;color:#6e7681;font-size:11px}
+  canvas{display:block}
+</style>
+<script type="importmap">
+{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+}}
+</script>
+</head>
+<body>
+<div id="app">
+  <aside>
+    <h1>CSG Cert Gap · repair inspector</h1>
+    <label>CSG case (axis-aligned box union/difference, 12³ lattice)</label>
+    <select id="case"></select>
+    <label>Injected defect</label>
+    <select id="defect"></select>
+    <label>View</label>
+    <select id="view">
+      <option value="repaired">repaired (certified)</option>
+      <option value="defective">defective (as injected)</option>
+    </select>
+    <button id="rebuild">Rebuild case</button>
+    <button id="rays">Verify 2,000 rays in-browser</button>
+    <div id="stats">loading…</div>
+    <div id="hint">Drag to orbit, wheel to zoom. Every repair number above comes from the same <code>src/core.mjs</code> the node bench uses. The 60 stealth verdicts are in <code>bench/verify.mjs</code>.</div>
+  </aside>
+  <main id="stage"></main>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
