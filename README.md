@@ -4,7 +4,7 @@
 
 Upstream: none
 
-This is an original tool about **certificate completeness**, not another repair lab. It takes CSG results that a repair pipeline genuinely fixed (the same 8 defect classes as `csg-seal-lab`, which this account already published) and then constructs **stealth defects** that the certificate used to “prove” those repairs cannot see. The point is negative evidence: a passing certificate is not a proof of validity, and the missing invariants can be stated and executed.
+This is an original tool about **certificate completeness**, not another repair lab. It takes CSG results that a repair pipeline genuinely fixed (8 defect classes, a subset of the 12 covered by `csg-seal-lab`, which this account already published) and then constructs **stealth defects** that the certificate used to “prove” those repairs cannot see. The point is negative evidence: a passing certificate is not a proof of validity, and the missing invariants can be stated and executed.
 
 ## Run it (one command, no npm install)
 
@@ -79,11 +79,11 @@ The account already has `csg-seal-lab`: 12 injected defect classes, 220/220 wate
 - **Stealth defects are constructed, not sampled from a real kernel.** They are valid counterexamples (real triangle soups) but synthetic; no claim about how often a production kernel emits them.
 - **Only 3 stealth classes.** Local T-junction/weld defects are already caught by edge counts; a stealth T-junction with zero boundary edges is not constructed. Non-manifold *solids* (boxes touching on an edge) remain out of scope.
 - **Ray blindness is claimed only for global inversion and only for winding-independent rays.** Surface-origin rays use the triangle normal and therefore detect inversion immediately; zero-volume components can perturb an interval-length oracle, so they are not claimed as ray-invisible. The strong certificate does not use rays at all.
-- **Volume tolerance is relative:** conventional gate `1e-12 × |oracle|`, strong gate `1e-9 × |oracle|`; component “zero volume” is `≤ 1e-9 × |oracle|`. Absolute geometry thresholds: weld `1e-9 × bbox diagonal`, degenerate area `1e-12 × diag²` (used by the repair baseline, not by the stealth certificate). Valid scale range for the repair baseline: 1e-6 … 1e6.
+- **Volume tolerance is relative:** conventional gate `1e-12 × |oracle|`, strong gate `1e-9 × |oracle|`; component “zero volume” is `≤ 1e-9 × |oracle|`. Absolute geometry thresholds: weld `1e-9 × bbox diagonal`, degenerate area `1e-12 × diag²` (used by the repair baseline, not by the stealth certificate). Only unit-scale CSG is verified in this round: the thresholds are written relative to the bbox diagonal, but no multi-scale sweep is committed to `bench/verify.mjs`.
 - **Vertex-link check** requires a simple cycle per interior vertex and rejects repeated link edges; it is not a full PL-manifold test (it does not check geometric self-intersection).
 - **Corpus is lattice CSG**, 12³ boxes, ≤ 1,308 triangles per case; the exact volume oracle is exact only because mesh and primitives share the lattice.
 - **Browser evidence is structural, not pixels.** No headless automation is used here; HTTP 200 + importmap are checked, the in-page numbers come from the same core, but no screenshot is offered.
-- The page is a repair/certificate inspector; the 60 stealth verdicts are produced by `bench/verify.mjs`, not by clicking.
+- The page is a repair inspector (three.js view of defective vs repaired geometry); the 60 stealth verdicts are produced by `bench/verify.mjs`, not by clicking.
 
 ## License
 
